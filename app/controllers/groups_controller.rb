@@ -24,10 +24,8 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-
     @group.update(group_params)
-
-    redirect_to groups_path, notice: "Update Success"
+    redirect_to groups_path, notice: "啊为什么没有信息啊？！"
   end
 
   private
