@@ -18,14 +18,22 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.save
-
+    flash[:notice] = "你新建了一个讨论组！"
     redirect_to groups_path
   end
 
   def update
     @group = Group.find(params[:id])
     @group.update(group_params)
-    redirect_to groups_path, notice: "啊为什么没有信息啊？！"
+    flash[:notice] = "该讨论组已更新！"
+    redirect_to groups_path
+  end
+
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
+    flash[:alert] = "讨论组已删除！"
+    redirect_to groups_path
   end
 
   private
