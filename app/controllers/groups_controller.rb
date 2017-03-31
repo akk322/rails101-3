@@ -16,10 +16,13 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(group_params)
-    @group.save
-    flash[:notice] = "你新建了一个讨论组！"
-    redirect_to groups_path
+       @group = Group.new(group_params)
+    if @group.save
+      flash[:notice] = "你新建了一个讨论组！"
+      redirect_to groups_path
+   else
+     render :new
+   end
   end
 
   def update
