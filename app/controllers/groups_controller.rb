@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-   before_action :authenticate_user! , only: [:new]
+   before_action :authenticate_user! , only: [:new, :create]
   def index
     @groups = Group.all
   end
@@ -18,6 +18,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
+    @group.user = current_user
     if @group.save
       flash[:notice] = "你新建了一个讨论组！"
       redirect_to groups_path
