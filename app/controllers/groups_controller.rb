@@ -22,6 +22,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.user = current_user
     if @group.save
+      current_user.join!(@group)
       flash[:notice] = "你新建了一个讨论组！"
       redirect_to groups_path
    else
